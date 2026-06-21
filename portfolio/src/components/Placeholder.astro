@@ -1,0 +1,7 @@
+---
+// 占位图组件：将来用真实图片替换时，把这个组件换成 <img src="/assets/..." />
+const { label = "image", class: cls = "", style = "" } = Astro.props;
+---
+<div class={`ph ${cls}`} style={style}>
+  <span>🖼 {label}</span>
+</div>

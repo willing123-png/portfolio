@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Placeholder from '../components/Placeholder.astro';
+
+const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
+
+const painPoints = [
+  "看不懂展览内容",
+  "缺乏展前准备",
+  "作品解读门槛高",
+  "希望看展后能留下纪念",
+];
+
+const solutions = [
+  {
+    tag: "Before",
+    title: "现状问题",
+    img: "exhibition/sol-before.png",
+    desc: "信息密度过大，容易给用户造成认知负担。",
+  },
+  {
+    tag: "方案一",
+    title: "信息平铺式",
+    img: "exhibition/sol-1.png",
+    desc: "通过语音的方式传递背景信息，降低阅读负担。",
+  },
+  {
+    tag: "方案二",
+    title: "卡片选择式",
+    img: "exhibition/sol-2.png",
+    desc: "用户可以有选择性地了解展品的不同内容。",
+  },
+];
+---
+
+<BaseLayout title="看展助手 · AI 看展案例 · 吴悠" description="看展助手 —— 提升用户全流程的观展体验">
+  <main class="w-full bg-[#efe7d9] text-[#3b2f26] text-[17px] leading-relaxed">
+
+    <!-- 顶部返回 -->
+    <div class="absolute left-0 right-0 top-0 z-20">
+      <div class={`${wrap} flex items-center justify-between py-5`}>
+        <a href="/#projects" class="text-sm text-[#f3ece0]/90 hover:text-white">← 返回作品集</a>
+        <Placeholder label="exhibition/badge-douyin.png" class="h-10 w-28 rounded" />
+      </div>
+    </div>
+
+    <!-- ============ 封面（深棕） ============ -->
+    <section class="relative w-full overflow-hidden bg-gradient-to-b from-[#6b4f3a] via-[#5a4030] to-[#3f2c1f]">
+      <Placeholder label="exhibition/cover-bg.jpg（可选纹理背景）" class="absolute inset-0 h-full w-full opacity-30" />
+      <div class={`relative z-10 ${wrap} pt-28 pb-16 md:pt-36 md:pb-20`}>
+        <h1 style="font-family:var(--font-display); font-size:clamp(44px,8vw,96px)" class="font-black leading-[0.95] text-[#f3ece0]">看展助手</h1>
+        <p class="mt-4 text-lg text-[#f3ece0]/80 md:text-2xl">提升用户全流程的观展体验</p>
+
+        <!-- 三个手机 mockup -->
+        <div class="mt-14 flex items-end justify-center gap-4 md:gap-8">
+          <Placeholder label="exhibition/cover-phone-1.png" class="aspect-[9/19] w-1/4 max-w-[220px] translate-y-4 rounded-[28px]" />
+          <Placeholder label="exhibition/cover-phone-2.png" class="aspect-[9/19] w-1/4 max-w-[240px] rounded-[28px]" />
+          <Placeholder label="exhibition/cover-phone-3.png" class="aspect-[9/19] w-1/4 max-w-[220px] translate-y-4 rounded-[28px]" />
+        </div>
+
+        <!-- 痛点气泡 -->
+        <div class="mt-12 flex flex-wrap justify-center gap-3">
+          {painPoints.map((p) => (
+            <span class="rounded-full bg-[#f3ece0]/12 px-4 py-2 text-sm text-[#f3ece0]/90 backdrop-blur">{p}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 项目背景 / 用户痛点 ============ -->
+    <section class="w-full py-20 md:py-28">
+      <div class={wrap}>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#9c6b43]">Background</p>
+        <h2 class="mt-2 text-3xl font-bold md:text-5xl">项目背景</h2>
+        <p class="mt-5 max-w-3xl text-[#6f6253]">
+          观展是高门槛的体验：用户在展前缺乏准备、展中看不懂作品、展后难以留下记忆。看展助手希望覆盖"展前—展中—展后"的全流程，降低理解门槛。
+          <span class="text-[#b08968]">（此段文案为占位，待按设计稿校对）</span>
+        </p>
+
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {painPoints.map((p, i) => (
+            <div class="rounded-2xl border border-[#d8cbb6] bg-[#f6f0e6] p-6">
+              <p class="text-3xl font-black text-[#cdb89a]">0{i + 1}</p>
+              <p class="mt-3 font-medium">{p}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 方案展示 ============ -->
+    <section class="w-full bg-[#e7dccb] py-20 md:py-28">
+      <div class={wrap}>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#9c6b43]">Solution presentation</p>
+        <h2 class="mt-2 text-3xl font-bold md:text-5xl">方案展示</h2>
+
+        <div class="mt-12 grid gap-8 md:grid-cols-3">
+          {solutions.map((s) => (
+            <div class="flex flex-col">
+              <div class="mb-4">
+                <span class="rounded-full bg-[#9c6b43] px-3 py-1 text-sm font-medium text-[#f3ece0]">{s.tag}</span>
+                <span class="ml-3 font-semibold">{s.title}</span>
+              </div>
+              <Placeholder label={s.img} class="aspect-[9/18] w-full rounded-[28px]" />
+              <p class="mt-4 text-[#6f6253]">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 方案细节（占位） ============ -->
+    <section class="w-full py-20 md:py-28">
+      <div class={wrap}>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#9c6b43]">Details</p>
+        <h2 class="mt-2 text-3xl font-bold md:text-5xl">方案细节</h2>
+        <p class="mt-3 text-[#b08968]">（此段排版待拿到该区块素材后细化）</p>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[1,2,3,4,5,6].map((n) => (
+            <Placeholder label={`exhibition/sol2-${n}.png`} class="aspect-[4/3] w-full rounded-xl" />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 实拍 / 案例照片 ============ -->
+    <section class="w-full bg-[#e7dccb] py-20 md:py-28">
+      <div class={wrap}>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-[#9c6b43]">Gallery</p>
+        <h2 class="mt-2 text-3xl font-bold md:text-5xl">实拍记录</h2>
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[1,2,3,4].map((n) => (
+            <Placeholder label={`exhibition/photo-${n}.jpg`} class="aspect-[3/4] w-full rounded-xl" />
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <footer class="w-full py-14 text-center text-sm text-[#8a7c6c]">
+      <a href="/#projects" class="text-[#9c6b43] hover:underline">← 返回作品集首页</a>
+      <p class="mt-3">© 2026 吴悠 · 看展助手案例</p>
+    </footer>
+  </main>
+</BaseLayout>
