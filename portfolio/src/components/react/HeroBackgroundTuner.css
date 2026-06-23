@@ -1,0 +1,112 @@
+.hero-bg-debug-panel {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 50;
+  width: min(320px, calc(100vw - 32px));
+  color: #fff;
+  font-family: var(--font-sans);
+  pointer-events: auto;
+}
+
+.hero-bg-debug-header button {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(7, 10, 17, 0.78);
+  color: rgba(255, 255, 255, 0.88);
+  cursor: pointer;
+}
+
+.hero-bg-debug-body {
+  max-height: min(620px, calc(100vh - 90px));
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(7, 10, 17, 0.84);
+  padding: 14px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(20px);
+}
+
+.hero-bg-debug-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hero-bg-debug-header p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero-bg-debug-header button {
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.hero-bg-debug-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.hero-bg-control,
+.hero-bg-color-control {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-bg-control span,
+.hero-bg-color-control {
+  align-items: center;
+}
+
+.hero-bg-control span {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hero-bg-control strong {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+}
+
+.hero-bg-control input[type="range"] {
+  width: 100%;
+  accent-color: #9fadff;
+}
+
+.hero-bg-color-control {
+  grid-template-columns: 64px 36px 1fr;
+}
+
+.hero-bg-color-control input {
+  width: 32px;
+  height: 28px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0;
+}
+
+.hero-bg-color-control code {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px 8px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+}
+
+@media (max-width: 720px) {
+  .hero-bg-debug-panel {
+    right: 10px;
+    bottom: 10px;
+    width: min(300px, calc(100vw - 20px));
+  }
+}

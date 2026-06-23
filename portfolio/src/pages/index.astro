@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBackgroundTuner from '../components/react/HeroBackgroundTuner.jsx';
+import HeroIntro from '../components/react/HeroIntro.jsx';
 import { articles } from '../data/articles.js';
 
 const internships = [
@@ -29,28 +31,17 @@ const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
   <main class="w-full text-[17px] leading-relaxed">
 
     <!-- ============ 封面（整屏铺满） ============ -->
-    <section class="relative min-h-[92svh] w-full overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-[var(--color-ink)]"></div>
+    <section class="relative min-h-[92svh] w-full overflow-hidden bg-[var(--color-ink-2)]">
+      <HeroBackgroundTuner client:load />
+      <div class="hero-liquid-bottom-fade absolute inset-0 z-[1]"></div>
+      <div class="hero-liquid-edge-vignette absolute inset-0 z-[2]"></div>
 
       <div class={`relative z-10 flex min-h-[92svh] flex-col justify-between py-8 md:py-14 ${wrap}`}>
         <div></div>
 
         <!-- 主标题 -->
-        <div class="mt-auto">
-          <div class="flex items-end gap-5">
-            <h1 style="font-family:var(--font-display); font-size:clamp(52px,13vw,200px)" class="font-black leading-[0.82] tracking-tight">
-              PORTFOLIO
-            </h1>
-            <span class="mb-3 hidden h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/80 text-3xl md:flex">↗</span>
-          </div>
-          <h2 style="font-family:var(--font-display); font-size:clamp(40px,10vw,150px)" class="font-bold leading-none">WORK</h2>
-
-          <div class="mt-10 space-y-1.5 text-base text-white/85 md:text-lg">
-            <p class="text-xl font-medium md:text-2xl">吴悠</p>
-            <p>Phone：+86 198 2230 6332</p>
-            <p>Email：willinginworld@gmail.com</p>
-            <p class="pt-2 tracking-[0.3em] text-white/70">UI &amp; UX DESIGNER</p>
-          </div>
+        <div class="mt-auto -translate-y-[18svh] md:-translate-y-[16svh]">
+          <HeroIntro client:load />
         </div>
       </div>
     </section>
