@@ -1,18 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroBackgroundTuner from '../components/react/HeroBackgroundTuner.jsx';
+import HeroIntro from '../components/react/HeroIntro.jsx';
 import { articles } from '../data/articles.js';
 
 const internships = [
-  {
-    company: "腾讯公司 PCG 平台与内容事业群",
-    period: "2025.09 - 2025.12",
-    desc: "工作内容：1. 主要参与 0-1 阶段 ToC 产品「哈皮」微信小游戏平台体验全流程设计，围绕商业目标（提升 DAU）主动挖掘需求，从业务诉求和用户定位出发，明确当前的设计机会点，进行相应的交互设计、UI 设计。共负责了 8 个需求，2 个 A 级需求，5 个 B 级需求，1 个 C 级需求。",
-  },
-  {
-    company: "桥介数物（深圳）科技有限公司",
-    period: "2025.03 - 2025.07",
-    desc: "工作内容：1. 负责 0-1「桥介引擎」PC 端机器人动作开发平台，功能流程设计和高保真视觉设计。梳理基础设计规范以及常用基础模块的组件整理。",
-  },
+  "腾讯公司 PCG 平台与内容事业群",
+  "桥介数物（深圳）科技有限公司",
 ];
 
 const projects = [
@@ -25,32 +19,21 @@ const projects = [
 const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
 ---
 
-<BaseLayout title="吴悠 · UI/UX 作品集">
+<BaseLayout title="UI/UX 作品集">
   <main class="w-full text-[17px] leading-relaxed">
 
     <!-- ============ 封面（整屏铺满） ============ -->
-    <section class="relative min-h-[92svh] w-full overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-[var(--color-ink)]"></div>
+    <section class="relative min-h-[92svh] w-full overflow-hidden bg-[var(--color-ink-2)]">
+      <HeroBackgroundTuner client:load />
+      <div class="hero-liquid-bottom-fade absolute inset-0 z-[1]"></div>
+      <div class="hero-liquid-edge-vignette absolute inset-0 z-[2]"></div>
 
       <div class={`relative z-10 flex min-h-[92svh] flex-col justify-between py-8 md:py-14 ${wrap}`}>
         <div></div>
 
         <!-- 主标题 -->
-        <div class="mt-auto">
-          <div class="flex items-end gap-5">
-            <h1 style="font-family:var(--font-display); font-size:clamp(52px,13vw,200px)" class="font-black leading-[0.82] tracking-tight">
-              PORTFOLIO
-            </h1>
-            <span class="mb-3 hidden h-16 w-16 shrink-0 items-center justify-center rounded-full border-2 border-white/80 text-3xl md:flex">↗</span>
-          </div>
-          <h2 style="font-family:var(--font-display); font-size:clamp(40px,10vw,150px)" class="font-bold leading-none">WORK</h2>
-
-          <div class="mt-10 space-y-1.5 text-base text-white/85 md:text-lg">
-            <p class="text-xl font-medium md:text-2xl">吴悠</p>
-            <p>Phone：+86 198 2230 6332</p>
-            <p>Email：willinginworld@gmail.com</p>
-            <p class="pt-2 tracking-[0.3em] text-white/70">UI &amp; UX DESIGNER</p>
-          </div>
+        <div class="mt-auto -translate-y-[18svh] md:-translate-y-[16svh]">
+          <HeroIntro client:load />
         </div>
       </div>
     </section>
@@ -62,7 +45,7 @@ const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
         <div class="flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
           <img
             src="/assets/home/portrait.jpg"
-            alt="吴悠证件照"
+            alt="证件照"
             class="aspect-[3/4] w-48 shrink-0 rounded-xl object-cover md:w-64"
           />
           <div class="flex-1">
@@ -91,14 +74,10 @@ const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
         <!-- 实习经历 -->
         <div class="mt-16">
           <h3 class="text-2xl font-semibold">实习经历</h3>
-          <div class="mt-8 space-y-10">
-            {internships.map((it) => (
+          <div class="mt-8 space-y-5">
+            {internships.map((company) => (
               <div class="border-l-2 border-[var(--color-accent)]/50 pl-6">
-                <div class="flex flex-wrap items-baseline justify-between gap-2">
-                  <p class="text-lg font-medium">{it.company}</p>
-                  <p class="text-sm text-[var(--color-muted)]">{it.period}</p>
-                </div>
-                <p class="mt-3 leading-relaxed text-[var(--color-muted)]">{it.desc}</p>
+                <p class="text-lg font-medium">{company}</p>
               </div>
             ))}
           </div>
@@ -150,7 +129,7 @@ const wrap = "mx-auto w-full max-w-[1300px] px-6 md:px-16";
     </section>
 
     <footer class="w-full py-12 text-center text-sm text-[var(--color-muted)]/60">
-      © 2026 吴悠 · UI/UX Portfolio
+      © 2026 UI/UX Portfolio
     </footer>
   </main>
 </BaseLayout>
