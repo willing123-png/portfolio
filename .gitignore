@@ -9,6 +9,9 @@ dist/
 .vercel/
 .netlify/
 
+# ---- Local experiments ----
+scene-motion-lab/
+
 # ---- Astro ----
 .astro/
 
