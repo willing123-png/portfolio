@@ -1,3 +1,16 @@
+.hero-intro-title,
+.hero-intro-work {
+  font-family: var(--font-display);
+}
+
+.hero-intro-title {
+  font-size: 44px;
+}
+
+.hero-intro-work {
+  font-size: 40px;
+}
+
 .hero-contact {
   opacity: 0;
   transform: translateY(14px);
@@ -9,6 +22,36 @@
 .hero-contact--visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  .hero-intro-title {
+    font-size: 96px;
+  }
+
+  .hero-intro-work {
+    font-size: 76px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-intro-title {
+    font-size: 132px;
+  }
+
+  .hero-intro-work {
+    font-size: 102px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-intro-title {
+    font-size: 180px;
+  }
+
+  .hero-intro-work {
+    font-size: 140px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

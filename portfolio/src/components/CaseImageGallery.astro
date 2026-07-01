@@ -1,0 +1,64 @@
+---
+const {
+  projectNo,
+  title,
+  subtitle = "",
+  description = "",
+  tags = [],
+  images = [],
+  backHref = "/#projects",
+  backLabel = "返回作品集",
+} = Astro.props;
+
+const imageList = images.map((image, index) => {
+  const imageData = typeof image === "string" ? { src: image } : image;
+  const number = String(index + 1).padStart(2, "0");
+
+  return {
+    ...imageData,
+    alt: imageData.alt ?? `${title} 案例图 ${number}`,
+  };
+});
+---
+
+<main class="min-h-screen w-full bg-[var(--color-ink)] text-[17px] leading-relaxed">
+  <header class="w-full max-w-none px-3 pb-8 pt-6 md:mx-auto md:max-w-[1300px] md:px-16 md:pb-12 md:pt-10">
+    <a href={backHref} class="text-sm text-[var(--color-accent)] transition-colors hover:text-white">
+      ← {backLabel}
+    </a>
+
+    <div class="mt-12 max-w-3xl md:mt-16">
+      <p class="text-sm tracking-[0.3em] text-[var(--color-muted)]">{projectNo}</p>
+      <h1
+        style="font-family:var(--font-display)"
+        class="mt-4 text-4xl font-black leading-tight md:text-6xl"
+      >
+        {title}
+      </h1>
+      {subtitle && <p class="mt-4 text-lg text-[var(--color-muted)] md:text-xl">{subtitle}</p>}
+      {description && <p class="mt-5 max-w-2xl text-[var(--color-muted)]">{description}</p>}
+
+      {tags.length > 0 && (
+        <div class="mt-6 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="rounded-full border border-white/15 px-3 py-1 text-xs text-[var(--color-muted)]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </header>
+
+  <section class="mx-auto flex w-full max-w-none flex-col gap-8 px-3 pb-16 md:max-w-[1300px] md:px-16 md:pb-24">
+    {imageList.map((image) => (
+      <img
+        src={image.src}
+        alt={image.alt}
+        loading="lazy"
+        decoding="async"
+        class="block h-auto w-full"
+      />
+    ))}
+  </section>
+</main>

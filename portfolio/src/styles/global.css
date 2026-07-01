@@ -27,6 +27,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.section-display-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+}
+
+@media (min-width: 768px) {
+  .section-display-title {
+    font-size: 120px;
+  }
+}
+
 .hero-liquid-bottom-fade {
   background: linear-gradient(
     to bottom,

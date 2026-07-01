@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseImageGallery from '../components/CaseImageGallery.astro';
+
+const images = Array.from(
+  { length: 11 },
+  (_, index) => `/assets/projects/hapi/${String(index + 1).padStart(2, "0")}.png`
+);
 ---
 <BaseLayout title="哈皮 · 核心体验优化 · 吴悠">
-  <main class="mx-auto flex min-h-[70svh] max-w-[1300px] flex-col items-center justify-center gap-4 px-6 text-center">
-    <p class="text-sm tracking-[0.3em] text-[var(--color-muted)]">PROJECT 03</p>
-    <p class="text-3xl font-semibold">哈皮 · 核心体验优化</p>
-    <p class="text-[var(--color-muted)]">腾讯 PCG 实习（案例页待制作）</p>
-    <a href="/#projects" class="mt-2 text-sm text-[var(--color-accent)]">← 返回首页</a>
-  </main>
+  <CaseImageGallery
+    projectNo="PROJECT 03"
+    title="哈皮 · 核心体验优化"
+    subtitle="腾讯 PCG 实习"
+    tags={["全流程设计"]}
+    images={images}
+  />
 </BaseLayout>

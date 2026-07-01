@@ -1,11 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseImageGallery from '../components/CaseImageGallery.astro';
+
+const images = Array.from(
+  { length: 9 },
+  (_, index) => `/assets/projects/mafengwo/${String(index + 1).padStart(2, "0")}.png`
+);
 ---
 <BaseLayout title="马蜂窝 · 营销活动设计 · 吴悠">
-  <main class="mx-auto flex min-h-[70svh] max-w-[1300px] flex-col items-center justify-center gap-4 px-6 text-center">
-    <p class="text-sm tracking-[0.3em] text-[var(--color-muted)]">PROJECT 02</p>
-    <p class="text-3xl font-semibold">马蜂窝 · 营销活动设计</p>
-    <p class="text-[var(--color-muted)]">校企合作项目（案例页待制作）</p>
-    <a href="/#projects" class="mt-2 text-sm text-[var(--color-accent)]">← 返回首页</a>
-  </main>
+  <CaseImageGallery
+    projectNo="PROJECT 02"
+    title="马蜂窝 · 营销活动设计"
+    subtitle="校企合作项目"
+    tags={["创意视觉", "AIGC应用"]}
+    images={images}
+  />
 </BaseLayout>

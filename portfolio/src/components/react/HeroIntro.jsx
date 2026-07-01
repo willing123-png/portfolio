@@ -10,8 +10,7 @@ export default function HeroIntro() {
     <>
       <div className="flex items-end gap-5">
         <h1
-          style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(52px,13vw,200px)' }}
-          className="font-black leading-[0.82] tracking-tight"
+          className="hero-intro-title font-black leading-[0.82] tracking-tight"
         >
           <TextType
             text="PORTFOLIO"
@@ -28,8 +27,7 @@ export default function HeroIntro() {
       </div>
 
       <h2
-        style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(40px,10vw,150px)' }}
-        className="font-bold leading-none"
+        className="hero-intro-work font-bold leading-none"
       >
         {portfolioDone && (
           <TextType
