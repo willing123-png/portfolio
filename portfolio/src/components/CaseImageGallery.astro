@@ -11,6 +11,27 @@ const {
 } = Astro.props;
 
 const defaultImageSizes = "(min-width: 768px) min(1172px, calc(100vw - 128px)), calc(100vw - 24px)";
+const assetVersion = "20260702-project-gallery";
+
+const versionAsset = (url) => {
+  if (!url) return url;
+
+  const [baseUrl, hash] = url.split("#");
+  const separator = baseUrl.includes("?") ? "&" : "?";
+  return `${baseUrl}${separator}v=${assetVersion}${hash ? `#${hash}` : ""}`;
+};
+
+const versionSrcset = (srcset = "") =>
+  srcset
+    .split(",")
+    .map((entry) => {
+      const trimmedEntry = entry.trim();
+      if (!trimmedEntry) return trimmedEntry;
+
+      const [url, ...descriptor] = trimmedEntry.split(/\s+/);
+      return [versionAsset(url), ...descriptor].join(" ");
+    })
+    .join(", ");
 
 const imageList = images.map((image, index) => {
   const imageData = typeof image === "string" ? { src: image } : image;
@@ -18,9 +39,13 @@ const imageList = images.map((image, index) => {
 
   return {
     ...imageData,
+    src: versionAsset(imageData.src),
     alt: imageData.alt ?? `${title} 案例图 ${number}`,
     sizes: imageData.sizes ?? defaultImageSizes,
-    sources: imageData.sources ?? [],
+    sources: (imageData.sources ?? []).map((source) => ({
+      ...source,
+      srcset: versionSrcset(source.srcset),
+    })),
   };
 });
 ---
@@ -54,7 +79,7 @@ const imageList = images.map((image, index) => {
     </div>
   </header>
 
-  <section class="mx-auto flex w-full max-w-none flex-col gap-8 px-3 pb-16 md:max-w-[1300px] md:px-16 md:pb-24">
+  <section class="mx-auto flex w-full max-w-none flex-col gap-3 px-3 pb-16 md:max-w-[1300px] md:gap-8 md:px-16 md:pb-24">
     {imageList.map((image, index) => {
       const isFirstImage = index === 0;
 

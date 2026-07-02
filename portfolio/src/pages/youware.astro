@@ -1,11 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CaseImageGallery from '../components/CaseImageGallery.astro';
+
+const responsiveWidths = [480, 768, 1280, 1920];
+const imageMeta = [
+  { id: "01", width: 1920, height: 1272 },
+  { id: "02", width: 1920, height: 939 },
+  { id: "03", width: 1920, height: 1410 },
+  { id: "04", width: 1920, height: 1494 },
+  { id: "05", width: 1920, height: 3771 },
+  { id: "06", width: 1920, height: 3120 },
+  { id: "07", width: 1920, height: 1698 },
+  { id: "08", width: 1920, height: 2285 },
+  { id: "09", width: 1920, height: 1434 },
+];
+
+const images = imageMeta.map(({ id, width, height }) => ({
+  src: `/assets/projects/youware/${id}.png`,
+  width,
+  height,
+  sources: [
+    {
+      type: "image/webp",
+      srcset: responsiveWidths
+        .map((imageWidth) => `/assets/optimized/projects/youware/${id}-${imageWidth}.webp ${imageWidth}w`)
+        .join(", "),
+    },
+  ],
+}));
 ---
-<BaseLayout title="AI 编程工具 · Youware · 吴悠">
-  <main class="mx-auto flex min-h-[70svh] max-w-[1300px] flex-col items-center justify-center gap-4 px-6 text-center">
-    <p class="text-sm tracking-[0.3em] text-[var(--color-muted)]">PROJECT 01</p>
-    <p class="text-3xl font-semibold">AI 编程工具 · 创建项目体验优化</p>
-    <p class="text-[var(--color-muted)]">Youware 自发项目（案例页待制作）</p>
-    <a href="/#projects" class="mt-2 text-sm text-[var(--color-accent)]">← 返回首页</a>
-  </main>
+
+<BaseLayout title="AI 编程工具 · 创建项目体验优化 · 吴悠">
+  <CaseImageGallery
+    projectNo="PROJECT 01"
+    title="AI 编程工具 · 创建项目体验优化"
+    subtitle="Youware 自发项目"
+    tags={["多方案设计", "设计自驱"]}
+    images={images}
+  />
 </BaseLayout>

@@ -2,10 +2,32 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseImageGallery from '../components/CaseImageGallery.astro';
 
-const images = Array.from(
-  { length: 9 },
-  (_, index) => `/assets/projects/mafengwo/${String(index + 1).padStart(2, "0")}.png`
-);
+const responsiveWidths = [480, 768, 1280, 1920];
+const imageMeta = [
+  { id: "01", width: 2560, height: 4112 },
+  { id: "02", width: 1920, height: 1344 },
+  { id: "03", width: 1920, height: 1080 },
+  { id: "04", width: 1920, height: 6729 },
+  { id: "05", width: 1920, height: 7563 },
+  { id: "06", width: 2560, height: 4552 },
+  { id: "07", width: 1920, height: 3717 },
+  { id: "08", width: 1920, height: 3573 },
+  { id: "09", width: 1920, height: 4101 },
+];
+
+const images = imageMeta.map(({ id, width, height }) => ({
+  src: `/assets/projects/mafengwo/${id}.png`,
+  width,
+  height,
+  sources: [
+    {
+      type: "image/webp",
+      srcset: responsiveWidths
+        .map((imageWidth) => `/assets/optimized/projects/mafengwo/${id}-${imageWidth}.webp ${imageWidth}w`)
+        .join(", "),
+    },
+  ],
+}));
 ---
 <BaseLayout title="马蜂窝 · 营销活动设计 · 吴悠">
   <CaseImageGallery
