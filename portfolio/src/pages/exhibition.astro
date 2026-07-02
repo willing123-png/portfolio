@@ -2,10 +2,28 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseImageGallery from '../components/CaseImageGallery.astro';
 
-const images = Array.from(
-  { length: 5 },
-  (_, index) => `/assets/projects/exhibition/${String(index + 1).padStart(2, "0")}.png`
-);
+const responsiveWidths = [480, 768, 1280, 1920];
+const imageMeta = [
+  { id: "01", width: 1920, height: 1962 },
+  { id: "02", width: 1920, height: 1569 },
+  { id: "03", width: 1920, height: 1749 },
+  { id: "04", width: 1920, height: 1656 },
+  { id: "05", width: 1920, height: 1446 },
+];
+
+const images = imageMeta.map(({ id, width, height }) => ({
+  src: `/assets/projects/exhibition/${id}.png`,
+  width,
+  height,
+  sources: [
+    {
+      type: "image/webp",
+      srcset: responsiveWidths
+        .map((imageWidth) => `/assets/optimized/projects/exhibition/${id}-${imageWidth}.webp ${imageWidth}w`)
+        .join(", "),
+    },
+  ],
+}));
 ---
 
 <BaseLayout title="看展助手 · AI 看展案例 · 吴悠" description="看展助手 —— 提升用户全流程的观展体验">

@@ -6,8 +6,8 @@
   --color-paper: #ffffff;
   --color-muted: #99a2b2;
   --color-accent: #4a7fb5;
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-sans: "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --font-display: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
 }
 
 :root { color-scheme: dark; }

@@ -10,6 +10,8 @@ const {
   backLabel = "返回作品集",
 } = Astro.props;
 
+const defaultImageSizes = "(min-width: 768px) min(1172px, calc(100vw - 128px)), calc(100vw - 24px)";
+
 const imageList = images.map((image, index) => {
   const imageData = typeof image === "string" ? { src: image } : image;
   const number = String(index + 1).padStart(2, "0");
@@ -17,6 +19,8 @@ const imageList = images.map((image, index) => {
   return {
     ...imageData,
     alt: imageData.alt ?? `${title} 案例图 ${number}`,
+    sizes: imageData.sizes ?? defaultImageSizes,
+    sources: imageData.sources ?? [],
   };
 });
 ---
@@ -51,14 +55,26 @@ const imageList = images.map((image, index) => {
   </header>
 
   <section class="mx-auto flex w-full max-w-none flex-col gap-8 px-3 pb-16 md:max-w-[1300px] md:px-16 md:pb-24">
-    {imageList.map((image) => (
-      <img
-        src={image.src}
-        alt={image.alt}
-        loading="lazy"
-        decoding="async"
-        class="block h-auto w-full"
-      />
-    ))}
+    {imageList.map((image, index) => {
+      const isFirstImage = index === 0;
+
+      return (
+        <picture class="block w-full">
+          {image.sources.map((source) => (
+            <source type={source.type} srcset={source.srcset} sizes={image.sizes} />
+          ))}
+          <img
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            loading={isFirstImage ? "eager" : "lazy"}
+            fetchpriority={isFirstImage ? "high" : undefined}
+            decoding="async"
+            class="block h-auto w-full"
+          />
+        </picture>
+      );
+    })}
   </section>
 </main>

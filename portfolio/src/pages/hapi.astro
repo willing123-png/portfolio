@@ -2,10 +2,34 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CaseImageGallery from '../components/CaseImageGallery.astro';
 
-const images = Array.from(
-  { length: 11 },
-  (_, index) => `/assets/projects/hapi/${String(index + 1).padStart(2, "0")}.png`
-);
+const responsiveWidths = [480, 768, 1280, 1920];
+const imageMeta = [
+  { id: "01", width: 1920, height: 1614 },
+  { id: "02", width: 1920, height: 1182 },
+  { id: "03", width: 1920, height: 1218 },
+  { id: "04", width: 1920, height: 1593 },
+  { id: "05", width: 1920, height: 3093 },
+  { id: "06", width: 1920, height: 1629 },
+  { id: "07", width: 1920, height: 1593 },
+  { id: "08", width: 1920, height: 1719 },
+  { id: "09", width: 1920, height: 1800 },
+  { id: "10", width: 1920, height: 1866 },
+  { id: "11", width: 1920, height: 2484 },
+];
+
+const images = imageMeta.map(({ id, width, height }) => ({
+  src: `/assets/projects/hapi/${id}.png`,
+  width,
+  height,
+  sources: [
+    {
+      type: "image/webp",
+      srcset: responsiveWidths
+        .map((imageWidth) => `/assets/optimized/projects/hapi/${id}-${imageWidth}.webp ${imageWidth}w`)
+        .join(", "),
+    },
+  ],
+}));
 ---
 <BaseLayout title="哈皮 · 核心体验优化 · 吴悠">
   <CaseImageGallery
